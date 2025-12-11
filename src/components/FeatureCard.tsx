@@ -1,18 +1,15 @@
 /* FeatureCard Component - Displays a single feature in the carousel */
 import React from 'react'
-import { LucideIcon } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { Card, CardContent } from '@/components/ui/card'
 
 interface FeatureCardProps {
-  icon: LucideIcon
   title: string
   description: string
   className?: string
 }
 
 export const FeatureCard: React.FC<FeatureCardProps> = ({
-  icon: Icon,
   title,
   description,
   className,
@@ -20,18 +17,22 @@ export const FeatureCard: React.FC<FeatureCardProps> = ({
   return (
     <Card
       className={cn(
-        'bg-[#F8F8F8] border-none shadow-soft rounded-[20px] h-[180px] md:h-[220px] w-full max-w-[320px] mx-auto select-none',
+        'rounded-full bg-white border-4 border-white shadow-xl relative overflow-hidden flex flex-col justify-center items-center text-center transition-all duration-300 hover:border-primary/10 hover:shadow-2xl',
         className,
       )}
     >
-      <CardContent className="flex flex-col items-center justify-center h-full p-[30px] text-center">
-        <div className="mb-5 text-primary">
-          <Icon className="w-10 h-10 md:w-12 md:h-12" strokeWidth={2.5} />
-        </div>
-        <h3 className="text-[20px] md:text-[24px] font-semibold text-foreground mb-2 leading-tight">
+      {/* Decorative gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-white via-white to-gray-50 pointer-events-none" />
+
+      {/* Decorative ring */}
+      <div className="absolute inset-[2px] rounded-full border border-gray-100 pointer-events-none" />
+
+      <CardContent className="relative z-10 flex flex-col items-center justify-center h-full w-full p-8 md:p-10 space-y-3">
+        <h3 className="text-xl md:text-2xl font-bold text-foreground leading-tight tracking-tight px-2">
           {title}
         </h3>
-        <p className="text-[14px] md:text-[16px] font-normal text-muted-foreground leading-[1.4]">
+        <div className="w-12 h-1 bg-primary/20 rounded-full my-1 md:my-2" />
+        <p className="text-sm md:text-base font-medium text-muted-foreground leading-relaxed max-w-[240px]">
           {description}
         </p>
       </CardContent>

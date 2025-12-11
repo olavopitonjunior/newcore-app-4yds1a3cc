@@ -1,4 +1,4 @@
-/* FeatureCarousel Component - Interactive 3D carousel with features */
+/* FeatureCarousel Component - Interactive 3D carousel with circular features */
 import React, { useState, useEffect, useCallback, useRef } from 'react'
 import {
   Carousel,
@@ -7,33 +7,25 @@ import {
   type CarouselApi,
 } from '@/components/ui/carousel'
 import { FeatureCard } from '@/components/FeatureCard'
-import { TrendingUp, Users, Briefcase, Headphones } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import Autoplay from 'embla-carousel-autoplay'
 
 const DEFAULT_ITEMS = [
   {
-    icon: TrendingUp,
-    title: 'Anúncios Gratuitos',
-    description:
-      'Anuncie seus imóveis nos principais portais imobiliários gratuitamente',
+    title: 'Anúncios Gratuitos.',
+    description: 'Seus imóveis nos principais portais imobiliários.',
   },
   {
-    icon: Users,
-    title: 'Networking Ilimitado',
-    description: 'Conecte-se com milhares de corretores em todo o país',
+    title: 'Maior comissão do mercado.',
+    description: 'A maior parte da comissão é sua.',
   },
   {
-    icon: Briefcase,
-    title: 'Gestão Simplificada',
-    description:
-      'Ferramentas completas para gerenciar sua carteira de clientes',
+    title: 'Transparência e Liberdade',
+    description: 'Tudo que você precisa está no APP.',
   },
   {
-    icon: Headphones,
-    title: 'Suporte Especializado',
-    description:
-      'Equipe dedicada para auxiliar no seu crescimento profissional',
+    title: 'Treinamentos e Acompanhamento',
+    description: 'Sistema de treinamentos Newcore.',
   },
 ]
 
@@ -42,7 +34,7 @@ export const FeatureCarousel: React.FC = () => {
   const [current, setCurrent] = useState(0)
   const [count, setCount] = useState(0)
   const autoplayRef = useRef(
-    Autoplay({ delay: 3000, stopOnInteraction: false, stopOnMouseEnter: true }),
+    Autoplay({ delay: 4000, stopOnInteraction: false, stopOnMouseEnter: true }),
   )
 
   useEffect(() => {
@@ -75,14 +67,15 @@ export const FeatureCarousel: React.FC = () => {
 
       const rotateY = percent * 45
       const scale = 1 - Math.abs(percent) * 0.15
-      const opacity = 1 - Math.abs(percent) * 0.3
+      const opacity = 1 - Math.abs(percent) * 0.2
 
       const content = slide.querySelector(
         '.feature-card-wrapper',
       ) as HTMLElement
       if (content) {
         content.style.transform = `perspective(1000px) rotateY(${rotateY}deg) scale(${scale})`
-        content.style.opacity = `${Math.max(opacity, 0.4)}`
+        content.style.opacity = `${Math.max(opacity, 0.5)}`
+        // Adjust z-index to ensure center item is on top
         content.style.zIndex = `${10 - Math.round(Math.abs(percent) * 10)}`
       }
     })
@@ -118,18 +111,17 @@ export const FeatureCarousel: React.FC = () => {
           {DEFAULT_ITEMS.map((feature, index) => (
             <CarouselItem
               key={index}
-              className="pl-0 basis-[85%] md:basis-[60%] lg:basis-[50%]"
+              className="pl-0 basis-[85%] md:basis-[55%] lg:basis-[40%] flex justify-center"
               style={{ transformStyle: 'preserve-3d' }}
             >
               <div
-                className="p-4 feature-card-wrapper transition-none will-change-transform"
+                className="feature-card-wrapper transition-none will-change-transform p-4"
                 style={{ transformOrigin: 'center center' }}
               >
                 <FeatureCard
-                  icon={feature.icon}
                   title={feature.title}
                   description={feature.description}
-                  className="w-full max-w-none shadow-lg h-[220px] md:h-[260px] bg-card border border-border/50"
+                  className="w-[280px] h-[280px] md:w-[340px] md:h-[340px]"
                 />
               </div>
             </CarouselItem>
