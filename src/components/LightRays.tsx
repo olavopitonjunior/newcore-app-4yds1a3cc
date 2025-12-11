@@ -21,6 +21,7 @@ interface LightRaysProps {
   mouseInfluence?: number
   followMouse?: boolean
   numRays?: number
+  blendMode?: GlobalCompositeOperation
 }
 
 export const LightRays: React.FC<LightRaysProps> = ({
@@ -38,6 +39,7 @@ export const LightRays: React.FC<LightRaysProps> = ({
   mouseInfluence = 0.05,
   followMouse = true,
   numRays = 30,
+  blendMode = 'screen',
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const mouseRef = useRef({ x: 0, y: 0 })
@@ -87,7 +89,7 @@ export const LightRays: React.FC<LightRaysProps> = ({
 
       // Apply saturation filter
       ctx.filter = `saturate(${saturation})`
-      ctx.globalCompositeOperation = 'screen'
+      ctx.globalCompositeOperation = blendMode
 
       // Determine Origin
       let originX = width / 2
@@ -199,6 +201,7 @@ export const LightRays: React.FC<LightRaysProps> = ({
     mouseInfluence,
     followMouse,
     numRays,
+    blendMode,
   ])
 
   return (

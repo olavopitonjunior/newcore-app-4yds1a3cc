@@ -17,7 +17,7 @@ export const AppLogo: React.FC<AppLogoProps> = ({ className }) => {
       <img
         src="https://res.cloudinary.com/subframe/image/upload/v1741634676/uploads/516/2205562d-005f-4d37-8898-333068e64c2a.png"
         alt="Newcore Logo"
-        className="w-[160px] md:w-[220px] h-auto object-contain animate-fade-in"
+        className="w-[160px] md:w-[220px] h-auto object-contain animate-fade-in drop-shadow-sm"
       />
     </div>
   )
