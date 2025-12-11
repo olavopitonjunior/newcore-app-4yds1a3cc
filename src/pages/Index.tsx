@@ -8,24 +8,25 @@ import { LightRays } from '@/components/LightRays'
 const Index = () => {
   return (
     <div className="relative flex flex-col items-center w-full min-h-screen bg-background animate-fade-in pb-10 overflow-x-hidden">
-      {/* Visual Effect Background */}
+      {/* Visual Effect Background - Smoke Effect */}
       <LightRays
         raysOrigin="top-center"
-        raysColor="hsl(348, 100%, 45%)"
-        raysSpeed={0.3}
-        lightSpread={1.5}
-        rayLength={1.0}
-        pulsating={false}
-        fadeDistance={0.7}
-        saturation={0.5}
-        noiseAmount={0.05}
-        distortion={0.02}
-        mouseInfluence={0.05}
-        followMouse={true}
-        className="h-[600px] z-0"
+        raysColor="hsl(348, 100%, 50%)" // Red smoke
+        raysSpeed={0.2} // Slow moving smoke
+        lightSpread={3.5} // Wide spread to cover top
+        rayLength={1.2}
+        pulsating={true}
+        fadeDistance={0.5}
+        saturation={1.2}
+        noiseAmount={0.3} // High noise for turbulence
+        distortion={0.3} // High distortion for smoke shape
+        mouseInfluence={0}
+        followMouse={false} // No interaction
+        numRays={60} // Smooth out the effect
+        className="h-[800px] w-full absolute top-[-250px] left-0 right-0 z-0 opacity-50 blur-[80px] pointer-events-none"
       />
 
-      <div className="relative z-10 w-full max-w-4xl flex flex-col items-center px-4">
+      <div className="relative z-10 w-full max-w-4xl flex flex-col items-center px-4 pt-12 md:pt-16">
         <AppLogo />
         <HeroContent />
       </div>

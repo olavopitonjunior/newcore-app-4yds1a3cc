@@ -20,6 +20,7 @@ interface LightRaysProps {
   distortion?: number
   mouseInfluence?: number
   followMouse?: boolean
+  numRays?: number
 }
 
 export const LightRays: React.FC<LightRaysProps> = ({
@@ -36,6 +37,7 @@ export const LightRays: React.FC<LightRaysProps> = ({
   distortion = 0.0,
   mouseInfluence = 0.05,
   followMouse = true,
+  numRays = 30,
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const mouseRef = useRef({ x: 0, y: 0 })
@@ -111,17 +113,12 @@ export const LightRays: React.FC<LightRaysProps> = ({
         originY += mouseRef.current.y * height * mouseInfluence
       }
 
-      const numRays = 30
       // Time-based animation
       timeRef.current += 0.01 * raysSpeed
       const time = timeRef.current
 
       for (let i = 0; i < numRays; i++) {
         // Calculate base angle for spread
-        // We want rays to cover a certain area based on lightSpread
-        // For top-center, we typically want rays going downwards (-PI to 0 or 0 to PI depending on coord system)
-        // Canvas Y is down. So top-center needs angles around PI/2 (90deg)
-
         const spreadRad = Math.PI * lightSpread
         const angleStep = spreadRad / numRays
         const baseAngle = Math.PI / 2 - spreadRad / 2 + i * angleStep
@@ -201,6 +198,7 @@ export const LightRays: React.FC<LightRaysProps> = ({
     distortion,
     mouseInfluence,
     followMouse,
+    numRays,
   ])
 
   return (
@@ -212,7 +210,7 @@ export const LightRays: React.FC<LightRaysProps> = ({
       )}
       aria-hidden="true"
     >
-      <canvas ref={canvasRef} className="block w-full h-full opacity-60" />
+      <canvas ref={canvasRef} className="block w-full h-full" />
     </div>
   )
 }
