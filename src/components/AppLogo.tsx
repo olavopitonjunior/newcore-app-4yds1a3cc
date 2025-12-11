@@ -14,38 +14,11 @@ export const AppLogo: React.FC<AppLogoProps> = ({ className }) => {
         className,
       )}
     >
-      <svg
-        width="180"
-        height="60"
-        viewBox="0 0 180 60"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        className="w-[120px] md:w-[180px] h-auto"
-        aria-label="NEWCORE Logo"
-      >
-        {/* House Icon - Primary Red */}
-        <path
-          d="M90 5L65 25H75V45H105V25H115L90 5Z"
-          fill="#E5002C"
-          stroke="#E5002C"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        {/* Text - Dark Text */}
-        <text
-          x="90"
-          y="58"
-          textAnchor="middle"
-          fill="#212121"
-          fontSize="16"
-          fontWeight="700"
-          fontFamily="Inter, sans-serif"
-          letterSpacing="0.2em"
-        >
-          NEWCORE
-        </text>
-      </svg>
+      <img
+        src="https://res.cloudinary.com/subframe/image/upload/v1741634676/uploads/516/2205562d-005f-4d37-8898-333068e64c2a.png"
+        alt="Newcore Logo"
+        className="w-[160px] md:w-[220px] h-auto object-contain animate-fade-in"
+      />
     </div>
   )
 }
